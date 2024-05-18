@@ -1,16 +1,7 @@
-# redditclone
+[The project is still under development, I will be trying to push daily commits to add new features] 
 
-A new Flutter project.
+[The most important feature that I am planning to implement is an AI moderation of communities] 
 
-## Getting Started
+[Anyone willing to contribute can open a new issue]
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+SmartOwl is a Reddit clone made using Flutter & Dart, with Riverpod state management, & Firebase as a backend & following a clean code architecture. However, unlike Reddit where any kind of information is shared, this app focuses on the creation of communities & sharing of posts, that can used as a source of know"OWL"edge or learning for people/professionals across various fields & domains.
