@@ -1,0 +1,5 @@
+package com.example.redditclone
+
+import io.flutter.embedding.android.FlutterActivity
+
+class MainActivity: FlutterActivity()
