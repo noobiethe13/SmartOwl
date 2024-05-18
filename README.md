@@ -1,6 +1,6 @@
 [The project is still under development, I will be trying to push daily commits to add new features] 
 
-[The most important feature that I am planning to implement is an AI moderation of communities] 
+[The most important feature that I am planning to implement is an AI moderation of communities using Gemini and the Firebase genkit] 
 
 [Anyone willing to contribute can open a new issue]
 
