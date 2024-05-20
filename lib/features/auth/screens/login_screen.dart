@@ -21,22 +21,24 @@ class LoginScreen extends StatelessWidget {
               child: Text("Skip", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.indigo[600])))
         ],
       ),
-      body: Column(
-        children: [
-          SizedBox(height: 20,),
-          Text("All the Knowledge You Need", style: TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-            letterSpacing: 0.5,
-          ),),
-          SizedBox(height: 30,),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Center(child: Image.asset(Constants.loginImagePath, height: 350,)),
-          ),
-          SizedBox(height: 20,),
-          SignInButton(),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const SizedBox(height: 20,),
+            const Text("All the Knowledge You Need", style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+              letterSpacing: 0.5,
+            ),),
+            const SizedBox(height: 30,),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Center(child: Image.asset(Constants.loginImagePath, height: 350,)),
+            ),
+            const SizedBox(height: 20,),
+            const SignInButton(),
+          ],
+        ),
       ),
     );
   }

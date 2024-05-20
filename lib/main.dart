@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Smart Owl',
       theme: Palette.darkModeAppTheme,
-      home: const LoginScreen(),
+      home: ScaffoldMessenger(child: const LoginScreen()),
     );
   }
 }

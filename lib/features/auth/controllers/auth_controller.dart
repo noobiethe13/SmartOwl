@@ -9,7 +9,7 @@ final userProvider = StateProvider<UserModel?>((ref) => null);
 
 final authControllerProvider = StateNotifierProvider<AuthController, bool>(
       (ref) => AuthController(
-    authRepository: ref.watch(authModelProvider),
+    authModel: ref.watch(authModelProvider),
     ref: ref,
   ),
 );
@@ -25,18 +25,48 @@ final getUserDataProvider = StreamProvider.family((ref, String uid) {
 });
 
 class AuthController extends StateNotifier<bool> {
-  final AuthModel _authRepository;
+  final AuthModel _authModel;
   final Ref _ref;
-  AuthController({required AuthModel authRepository, required Ref ref})
-      : _authRepository = authRepository,
+  AuthController({required AuthModel authModel, required Ref ref})
+      : _authModel = authModel,
         _ref = ref,
         super(false); // loading
 
-  Stream<User?> get authStateChange => _authRepository.authStateChange;
+  Stream<User?> get authStateChange => _authModel.authStateChange;
 
   void signInWithGoogle(BuildContext context, bool isFromLogin) async {
     state = true;
-    final user = await _authRepository.signInWithGoogle(isFromLogin);
+    final user = await _authModel.signInWithGoogle(isFromLogin);
+    state = false;
+    user.fold(
+          (l) => showSnackBar(context, l.message),
+          (userModel) => _ref.read(userProvider.notifier).update((state) => userModel),
+    );
+  }
+
+  void signInWithApple(BuildContext context, bool isFromLogin) async {
+    state = true;
+    final user = await _authModel.signInWithApple(isFromLogin);
+    state = false;
+    user.fold(
+          (l) => showSnackBar(context, l.message),
+          (userModel) => _ref.read(userProvider.notifier).update((state) => userModel),
+    );
+  }
+
+  void signInWithEmailAndPassword(BuildContext context, String email, String password) async {
+    state = true;
+    final user = await _authModel.signInWithEmailAndPassword(email, password);
+    state = false;
+    user.fold(
+          (l) => showSnackBar(context, l.message),
+          (userModel) => _ref.read(userProvider.notifier).update((state) => userModel),
+    );
+  }
+
+  void createAccountWithEmailAndPassword(BuildContext context, String email, String password) async {
+    state = true;
+    final user = await _authModel.createAccountWithEmailAndPassword(email, password);
     state = false;
     user.fold(
           (l) => showSnackBar(context, l.message),
@@ -46,7 +76,7 @@ class AuthController extends StateNotifier<bool> {
 
   void signInAsGuest(BuildContext context) async {
     state = true;
-    final user = await _authRepository.signInAsGuest();
+    final user = await _authModel.signInAsGuest();
     state = false;
     user.fold(
           (l) => showSnackBar(context, l.message),
@@ -55,10 +85,10 @@ class AuthController extends StateNotifier<bool> {
   }
 
   Stream<UserModel> getUserData(String uid) {
-    return _authRepository.getUserData(uid);
+    return _authModel.getUserData(uid);
   }
 
   void logout() async {
-    _authRepository.logOut();
+    _authModel.logOut();
   }
 }
